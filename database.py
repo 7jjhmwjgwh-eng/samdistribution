@@ -1,11 +1,13 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import DeclarativeBase, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, sessionmaker, Session
 from config import settings
 import re
 
 def fix_url(url: str) -> str:
     url = url.strip().strip('"').strip("'")
-    url = re.sub(r'^postgres(ql)?(\+\w+)?://', 'postgresql+psycopg2://', url)
+    # Replace any postgres scheme with postgresql+psycopg2
+    url = re.sub(r'^postgres(\+\w+)?://', 'postgresql+psycopg2://', url)
+    url = re.sub(r'^postgresql(\+\w+)?://', 'postgresql+psycopg2://', url)
     return url
 
 db_url = fix_url(settings.DATABASE_URL)

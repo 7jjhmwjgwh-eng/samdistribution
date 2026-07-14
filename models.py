@@ -36,7 +36,7 @@ class Order(Base):
     client_id = Column(Integer, ForeignKey("clients.id"))
     total = Column(Float)
     note = Column(Text, nullable=True)
-    status = Column(String(20), default="new")  # new/accepted/delivered/paid
+    status = Column(String(20), default="new")
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     client = relationship("Client", back_populates="orders")
     items = relationship("OrderItem", back_populates="order")

@@ -1,7 +1,7 @@
 fastapi
 uvicorn[standard]
 sqlalchemy
-asyncpg
+psycopg2-binary
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
@@ -9,5 +9,3 @@ httpx
 pydantic[email]
 pydantic-settings
 python-dotenv
-psycopg2-binary
-alembic
